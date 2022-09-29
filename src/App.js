@@ -10,10 +10,12 @@ import AccountPage from "./screens/AccountPage";
 import DescriptionPage from "./screens/DescriptionPage";
 import NotFoundPage from "./screens/NotFoundPage";
 import MyPets from "./screens/MyPets";
+import NewPet from "./screens/NewPet";
 import CreateService from "./screens/CreateService";
 import MyServices from "./screens/MyServices";
 import NewPet from "./screens/NewPet";
 
+// Auth
 import Auth from "./screens/Auth";
 import { AuthContext } from "./shared/context/auth-context";
 

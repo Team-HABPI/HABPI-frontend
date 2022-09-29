@@ -1,7 +1,6 @@
 import { MenuItem, TextField } from "@mui/material";
 
 /**
-
  * @author Peter An
  * @param {string} title - display label title
  * @param {string || number} value - Final value for submission
