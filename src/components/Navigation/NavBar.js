@@ -11,9 +11,18 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { Link } from "react-router-dom";
 
-const pages = ["Services", "My Pets", "Create Service"];
-const settings = ["Profile", "Account", "My Services", "Logout"];
+const pages = [
+    { title: "Services", path: "/" },
+    { title: "My Pets", path: "/pets" },
+    { title: "Create Service", path: "/createservice" },
+];
+const settings = [
+    { title: "Account", path: "/account" },
+    { title: "My Services", path: "/myservices" },
+    { title: "Logout", path: "/logout" },
+];
 
 /**
  * This is a MUI AppBar
@@ -47,8 +56,11 @@ const NavBar = () => {
                     <Typography
                         variant="h6"
                         noWrap
-                        component="a"
-                        href="/"
+                        component={Link}
+                        to="/"
+                        style={{
+                            textDecoration: "none",
+                        }}
                         sx={{
                             mr: 2,
                             display: { xs: "none", md: "flex" },
@@ -99,11 +111,19 @@ const NavBar = () => {
                         >
                             {pages.map((page) => (
                                 <MenuItem
-                                    key={page}
+                                    key={page.title}
                                     onClick={handleCloseNavMenu}
                                 >
-                                    <Typography textAlign="center">
-                                        {page}
+                                    <Typography
+                                        textAlign="center"
+                                        component={Link}
+                                        to={page.path}
+                                        style={{
+                                            textDecoration: "none",
+                                            color: "black",
+                                        }}
+                                    >
+                                        {page.title}
                                     </Typography>
                                 </MenuItem>
                             ))}
@@ -112,8 +132,11 @@ const NavBar = () => {
                     <Typography
                         variant="h5"
                         noWrap
-                        component="a"
-                        href=""
+                        component={Link}
+                        to="/"
+                        style={{
+                            textDecoration: "none",
+                        }}
                         sx={{
                             mr: 2,
                             display: { xs: "flex", md: "none" },
@@ -140,7 +163,7 @@ const NavBar = () => {
                     >
                         {pages.map((page) => (
                             <Button
-                                key={page}
+                                key={page.title}
                                 onClick={handleCloseNavMenu}
                                 sx={{
                                     my: 2,
@@ -148,8 +171,10 @@ const NavBar = () => {
                                     color: "white",
                                     display: "block",
                                 }}
+                                component={Link}
+                                to={page.path}
                             >
-                                {page}
+                                {page.title}
                             </Button>
                         ))}
                     </Box>
@@ -184,11 +209,19 @@ const NavBar = () => {
                         >
                             {settings.map((setting) => (
                                 <MenuItem
-                                    key={setting}
+                                    key={setting.title}
                                     onClick={handleCloseUserMenu}
                                 >
-                                    <Typography textAlign="center">
-                                        {setting}
+                                    <Typography
+                                        textAlign="center"
+                                        component={Link}
+                                        to={setting.path}
+                                        style={{
+                                            textDecoration: "none",
+                                            color: "black",
+                                        }}
+                                    >
+                                        {setting.title}
                                     </Typography>
                                 </MenuItem>
                             ))}
