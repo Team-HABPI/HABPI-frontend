@@ -27,10 +27,10 @@ const title = "Hello";
  * Although it was a copy and paste
  */
 const NavBar = () => {
-    const auth = useContext(AuthContext);
-
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
+
+    const auth = useContext(AuthContext);
 
     let pages;
     let settings;
@@ -39,13 +39,14 @@ const NavBar = () => {
     if (auth.isLoggedIn) {
         pages = [
             { title: "Services", link: "/" },
-            { title: "My Pets", link: "/:userId/pets" },
-            { title: "Create Service", link: "/:userId/newService" },
+            { title: "My Pets", link: `/${auth.userId}/pets` },
+            { title: "Create Service", link: `/${auth.userId}/newService` },
+            { title: "New Pet", link: `/${auth.userId}/newPet` },
         ];
         settings = [
-            { title: "Account", link: "/:userId" },
-            { title: "My Services", link: "/:userId/services" },
-            { title: "Logout", link: "/logout" },
+            { title: "Account", link: `/${auth.userId}` },
+            { title: "My Services", link: `/${auth.userId}/services` },
+            { title: "Logout" },
         ];
     } else {
         pages = [
@@ -228,24 +229,41 @@ const NavBar = () => {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
-                                <MenuItem
-                                    key={setting.title}
-                                    onClick={handleCloseUserMenu}
-                                >
-                                    <Typography
-                                        textAlign="center"
-                                        component={Link}
-                                        to={setting.link}
-                                        style={{
-                                            textDecoration: "none",
-                                            color: "black",
-                                        }}
+                            {settings.map((setting) => {
+                                if (setting.title === "Logout") {
+                                    return (
+                                        <MenuItem
+                                            key={setting.title}
+                                            onClick={handleCloseUserMenu}
+                                        >
+                                            <Typography
+                                                textAlign="center"
+                                                onClick={auth.logout}
+                                            >
+                                                {setting.title}
+                                            </Typography>
+                                        </MenuItem>
+                                    );
+                                }
+                                return (
+                                    <MenuItem
+                                        key={setting.title}
+                                        onClick={handleCloseUserMenu}
                                     >
-                                        {setting.title}
-                                    </Typography>
-                                </MenuItem>
-                            ))}
+                                        <Typography
+                                            textAlign="center"
+                                            component={Link}
+                                            to={setting.link}
+                                            style={{
+                                                textDecoration: "none",
+                                                color: "black",
+                                            }}
+                                        >
+                                            {setting.title}
+                                        </Typography>
+                                    </MenuItem>
+                                );
+                            })}
                         </Menu>
                     </Box>
                 </Toolbar>
