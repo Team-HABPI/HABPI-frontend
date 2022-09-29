@@ -1,28 +1,22 @@
-import { useState } from "react";
+// Library imports
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Link } from "react-router-dom";
+import MenuIcon from "@mui/icons-material/Menu";
 
-const pages = [
-    { title: "Services", link: "/" },
-    { title: "My Pets", link: "/pets" },
-    { title: "Create Service", link: "/createservice" },
-];
-const settings = [
-    { title: "Account", link: "/account" },
-    { title: "My Services", link: "/myservices" },
-    { title: "Logout", link: "/logout" },
-];
+// Local imports
+import { AuthContext } from "../../shared/context/auth-context";
 
 const title = "Hello";
 
@@ -33,8 +27,33 @@ const title = "Hello";
  * Although it was a copy and paste
  */
 const NavBar = () => {
+    const auth = useContext(AuthContext);
+
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
+
+    let pages;
+    let settings;
+
+    // Handle if user is logged in
+    if (auth.isLoggedIn) {
+        pages = [
+            { title: "Services", link: "/" },
+            { title: "My Pets", link: "/:userId/pets" },
+            { title: "Create Service", link: "/:userId/newService" },
+        ];
+        settings = [
+            { title: "Account", link: "/:userId" },
+            { title: "My Services", link: "/:userId/services" },
+            { title: "Logout", link: "/logout" },
+        ];
+    } else {
+        pages = [
+            { title: "Services", link: "/" },
+            { title: "Login", link: "/auth" },
+        ];
+        settings = [{ title: "Login", link: "/auth" }];
+    }
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);

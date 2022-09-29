@@ -1,4 +1,5 @@
 // Library import
+import { useState, useCallback } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import NavBar from "./components/Navigation/NavBar";
@@ -11,23 +12,55 @@ import NotFoundPage from "./screens/NotFoundPage";
 import MyPets from "./screens/MyPets";
 import CreateService from "./screens/CreateService";
 import MyServices from "./screens/MyServices";
+import Auth from "./screens/Auth";
+import { AuthContext } from "./shared/context/auth-context";
 
 function App() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userId, setUserId] = useState();
+
+    const login = useCallback((uid) => {
+        setUserId(uid);
+        setIsLoggedIn(true);
+    }, []);
+
+    const logout = useCallback(() => {
+        setUserId(null);
+        setIsLoggedIn(false);
+    }, []);
+
+    let routes;
+
+    if (isLoggedIn) {
+        routes = (
+            <Routes>
+                <Route path="/" element={<MainPage />} />
+                <Route path="/:userId/pets" element={<MyPets />} />
+                <Route path="/:userId/newService" element={<CreateService />} />
+                <Route path="/:userId" element={<AccountPage />} />
+                <Route path="/:userId/services" element={<MyServices />} />
+                <Route path="/:serviceId" element={<DescriptionPage />} />
+                <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+        );
+    } else {
+        routes = (
+            <Routes>
+                <Route path="/" element={<MainPage />} />
+                <Route path="/description" element={<DescriptionPage />} />
+                <Route path="/auth" element={<Auth />} />
+                <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+        );
+    }
+
     return (
-        <>
+        <AuthContext.Provider value={{ isLoggedIn, userId, login, logout }}>
             <Router>
                 <NavBar />
-                <Routes>
-                    <Route path="/" element={<MainPage />} />
-                    <Route path="/account" element={<AccountPage />} />
-                    <Route path="/pets" element={<MyPets />} />
-                    <Route path="/createservice" element={<CreateService />} />
-                    <Route path="/myservices" element={<MyServices />} />
-                    <Route path="/description" element={<DescriptionPage />} />
-                    <Route path="*" element={<NotFoundPage />} />
-                </Routes>
+                <main>{routes}</main>
             </Router>
-        </>
+        </AuthContext.Provider>
     );
 }
 
