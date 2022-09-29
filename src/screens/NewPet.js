@@ -18,6 +18,7 @@ const NewPet = (props) => {
     const [breed, setBreed] = useState("");
 
     const auth = useContext(AuthContext);
+    const navigate = useNavigate();
 
     // Age options
     const ageOptions = [];
@@ -40,9 +41,21 @@ const NewPet = (props) => {
     const newPetSubmitHandler = (event) => {
         event.preventDefault();
 
+        // Making new pet
         axios
             .post("http://localhost:8082/pet", { name, age, breed })
-            .then(() => {})
+            .then((response) => {
+                const petId = response.data.pet.id;
+                // Nested post req for added pet to user
+                axios
+                    .post(`http://localhost:8082/user/${auth.userId}/add-pet`, {
+                        petId,
+                    })
+                    .catch((error) => console.log(error));
+            })
+            .then(() => {
+                navigate(`/${auth.userId}/pets`);
+            })
             .catch((error) => console.log(error));
     };
 
