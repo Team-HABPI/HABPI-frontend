@@ -1,7 +1,7 @@
 import React from 'react';
  
  
-const accountPage = () => {
+const AccountPage = () => {
     return(
     <div className="App"> 
       <header className="App-header">
@@ -16,4 +16,4 @@ const accountPage = () => {
 
  };
 
- export default accountPage;
+ export default AccountPage;
