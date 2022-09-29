@@ -2,6 +2,7 @@ import { MenuItem, TextField } from "@mui/material";
 
 /**
  * @author Peter An
+ * @param {string} title - display label title
  * @param {string || number} value - Final value for submission
  * @param {string[] || number[]} options - A list of options for dropdown
  * @param {function} changeHandler - The function of change values
