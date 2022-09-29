@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import accountPage from './components/accountPage';
+
 
 function App() {
   return (
