@@ -13,6 +13,7 @@ import MyPets from "./screens/MyPets";
 import NewPet from "./screens/NewPet";
 import CreateService from "./screens/CreateService";
 import MyServices from "./screens/MyServices";
+import EditPet from "./screens/EditPet";
 
 // Auth
 import Auth from "./screens/Auth";
@@ -40,6 +41,7 @@ function App() {
                 <Route path="/" element={<MainPage />} />
                 <Route path="/:userId/pets" element={<MyPets />} />
                 <Route path="/newPet" element={<NewPet />} />
+                <Route path="/:petId/edit" element={<EditPet />} />
                 <Route path="/:userId/newService" element={<CreateService />} />
                 <Route path="/:userId" element={<AccountPage />} />
                 <Route path="/:userId/services" element={<MyServices />} />
