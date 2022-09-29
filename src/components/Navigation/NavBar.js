@@ -39,8 +39,9 @@ const NavBar = () => {
     if (auth.isLoggedIn) {
         pages = [
             { title: "Services", link: "/" },
-            { title: "My Pets", link: "/:userId/pets" },
-            { title: "Create Service", link: "/:userId/newService" },
+            { title: "My Pets", link: `/${auth.userId}/pets` },
+            { title: "Create Service", link: `/${auth.userId}/newService` },
+            { title: "New Pet", link: `/newPet` },
         ];
         settings = [
             { title: "Account", link: "/:userId" },

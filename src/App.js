@@ -12,6 +12,8 @@ import NotFoundPage from "./screens/NotFoundPage";
 import MyPets from "./screens/MyPets";
 import CreateService from "./screens/CreateService";
 import MyServices from "./screens/MyServices";
+import NewPet from "./screens/NewPet";
+
 import Auth from "./screens/Auth";
 import { AuthContext } from "./shared/context/auth-context";
 
@@ -36,6 +38,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<MainPage />} />
                 <Route path="/:userId/pets" element={<MyPets />} />
+                <Route path="/newPet" element={<NewPet />} />
                 <Route path="/:userId/newService" element={<CreateService />} />
                 <Route path="/:userId" element={<AccountPage />} />
                 <Route path="/:userId/services" element={<MyServices />} />
