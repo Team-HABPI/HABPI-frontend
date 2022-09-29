@@ -1,12 +1,15 @@
 // Library imports
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+
+import { Button } from "@mui/material";
 
 const MyPets = (props) => {
     const [loadedPets, setLoadedPets] = useState();
 
     const params = useParams();
+    const navigate = useNavigate();
     const userId = params.userId;
 
     useEffect(() => {
@@ -17,6 +20,10 @@ const MyPets = (props) => {
             });
     }, [userId]);
 
+    const petEditButtonHandler = (petId) => {
+        navigate(`/${petId}/edit`);
+    };
+
     return (
         <>
             <h1>Your Pets</h1>
@@ -24,9 +31,18 @@ const MyPets = (props) => {
                 loadedPets.map((pet) => {
                     return (
                         <>
-                            <h2 key={pet._id}>{pet.name}</h2>
-                            <p key={pet._id}>{pet.age}</p>
-                            <p key={pet._id}>{pet.breed}</p>
+                            <h2 key={pet.name}>{pet.name}</h2>
+                            <p key={pet.age}>{pet.age}</p>
+                            <p key={pet.breed}>{pet.breed}</p>
+                            <Button
+                                key={pet._id}
+                                variant="contained"
+                                type="submit"
+                                margin="normal"
+                                onClick={() => petEditButtonHandler(pet._id)}
+                            >
+                                Edit
+                            </Button>
                         </>
                     );
                 })}
