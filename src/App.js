@@ -13,7 +13,6 @@ import MyPets from "./screens/MyPets";
 import NewPet from "./screens/NewPet";
 import CreateService from "./screens/CreateService";
 import MyServices from "./screens/MyServices";
-import NewPet from "./screens/NewPet";
 
 // Auth
 import Auth from "./screens/Auth";

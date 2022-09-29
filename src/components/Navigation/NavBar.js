@@ -1,6 +1,6 @@
 // Library imports
 import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -31,6 +31,7 @@ const NavBar = () => {
     const [anchorElUser, setAnchorElUser] = useState(null);
 
     const auth = useContext(AuthContext);
+    const navigate = useNavigate();
 
     let pages;
     let settings;
@@ -46,7 +47,7 @@ const NavBar = () => {
         settings = [
             { title: "Account", link: `/${auth.userId}` },
             { title: "My Services", link: `/${auth.userId}/services` },
-            { title: "Logout", link: "/logout" },
+            { title: "Logout" },
         ];
     } else {
         pages = [
@@ -69,6 +70,11 @@ const NavBar = () => {
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+
+    const handleLogout = () => {
+        auth.logout();
+        navigate("/");
     };
 
     return (
@@ -238,7 +244,7 @@ const NavBar = () => {
                                         >
                                             <Typography
                                                 textAlign="center"
-                                                onClick={auth.logout}
+                                                onClick={handleLogout}
                                             >
                                                 {setting.title}
                                             </Typography>
