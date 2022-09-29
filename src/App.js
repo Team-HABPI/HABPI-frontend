@@ -1,23 +1,33 @@
-import './App.css';
-import accountPage from './components/accountPage';
+// Library import
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import NavBar from "./components/Navigation/NavBar";
+
+// Screen import
+import MainPage from "./screens/MainPage";
+import AccountPage from "./screens/AccountPage";
+import DescriptionPage from "./screens/DescriptionPage";
+import NotFoundPage from "./screens/NotFoundPage";
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
- 
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-      
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <NavBar />
+            <main>
+                <Router>
+                    <Routes>
+                        <Route path="/" element={<MainPage />} />
+                        <Route path="/account" element={<AccountPage />} />
+                        <Route
+                            path="/description"
+                            element={<DescriptionPage />}
+                        />
+                        <Route path="*" element={<NotFoundPage />} />
+                    </Routes>
+                </Router>
+            </main>
+        </>
+    );
 }
 
 export default App;
