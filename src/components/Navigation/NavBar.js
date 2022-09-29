@@ -14,15 +14,17 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 
 const pages = [
-    { title: "Services", path: "/" },
-    { title: "My Pets", path: "/pets" },
-    { title: "Create Service", path: "/createservice" },
+    { title: "Services", link: "/" },
+    { title: "My Pets", link: "/pets" },
+    { title: "Create Service", link: "/createservice" },
 ];
 const settings = [
-    { title: "Account", path: "/account" },
-    { title: "My Services", path: "/myservices" },
-    { title: "Logout", path: "/logout" },
+    { title: "Account", link: "/account" },
+    { title: "My Services", link: "/myservices" },
+    { title: "Logout", link: "/logout" },
 ];
+
+const title = "Hello";
 
 /**
  * This is a MUI AppBar
@@ -71,7 +73,7 @@ const NavBar = () => {
                             textDecoration: "none",
                         }}
                     >
-                        Hello
+                        {title}
                     </Typography>
 
                     <Box
@@ -117,7 +119,7 @@ const NavBar = () => {
                                     <Typography
                                         textAlign="center"
                                         component={Link}
-                                        to={page.path}
+                                        to={page.link}
                                         style={{
                                             textDecoration: "none",
                                             color: "black",
@@ -148,7 +150,7 @@ const NavBar = () => {
                             textDecoration: "none",
                         }}
                     >
-                        Hello
+                        {title}
                     </Typography>
                     <Box
                         sx={{
@@ -172,7 +174,7 @@ const NavBar = () => {
                                     display: "block",
                                 }}
                                 component={Link}
-                                to={page.path}
+                                to={page.link}
                             >
                                 {page.title}
                             </Button>
@@ -215,7 +217,7 @@ const NavBar = () => {
                                     <Typography
                                         textAlign="center"
                                         component={Link}
-                                        to={setting.path}
+                                        to={setting.link}
                                         style={{
                                             textDecoration: "none",
                                             color: "black",
