@@ -1,5 +1,5 @@
 import './App.css';
-
+import accountPage from './components/accountPage';
 function App() {
   return (
     <div className="App">
