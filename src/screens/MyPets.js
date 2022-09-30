@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, Card, CardContent, Grid ,Button, Typography  } from "@mui/material";
-
 import axios from "axios";
 
 
@@ -47,9 +46,10 @@ const MyPets = (props) => {
                         <>
                             <Card sx={{ my: 2 }}>
                                 <CardContent>
-                                    <h2 key={pet.name}>{pet.name}</h2>
-                                    <p key={pet.age}>Age: {pet.age}</p>
-                                    <p key={pet.breed}>Breed: {pet.breed}</p>
+                                    <Typography variant="h3">{pet.name}</Typography>
+                                    <Typography >Age: {pet.age}</Typography>
+                                    <Typography >Breed: {pet.breed}</Typography>
+                                    
                                     <Button
                                         key={pet._id}
                                         variant="contained"
