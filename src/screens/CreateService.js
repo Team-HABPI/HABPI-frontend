@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { TextField, FormControl, Button } from "@mui/material";
 import axios from "axios";
 
@@ -14,8 +14,6 @@ const CreateService = (props) => {
     const [maxPrice, setMaxPrice] = useState(0);
 
     const navigate = useNavigate();
-    const params = useParams();
-    const userId = params.userId;
 
     const titleChangeHandler = (event) => {
         setTitle(event.target.value);
