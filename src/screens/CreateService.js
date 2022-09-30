@@ -4,6 +4,7 @@ import { TextField, FormControl, Button } from "@mui/material";
 import axios from "axios";
 
 import DropDown from "../components/UI/DropDown";
+import { Container } from "@mui/system";
 
 const jobTypes = ["Grooming", "Cleaning", "Walking", "Feeding", "Health Care"];
 
@@ -46,45 +47,54 @@ const CreateService = (props) => {
     };
 
     return (
-        <>
-            <h1>Make a new service</h1>
-            <form onSubmit={serviceSubmitHandler}>
-                <FormControl>
-                    <TextField
-                        id="outlined-title-input"
-                        label="Title"
-                        variant="outlined"
-                        margin="normal"
-                        value={title}
-                        onChange={titleChangeHandler}
-                    />
-                    <DropDown
-                        title="Job Type"
-                        value={jobType}
-                        options={jobTypes}
-                        changeHandler={jobTypeChangeHandler}
-                    />
-                    <TextField
-                        id="outlined-min-price-input"
-                        label="Min Price"
-                        variant="outlined"
-                        margin="normal"
-                        value={minPrice}
-                        onChange={minPriceChangeHandler}
-                    />
-                    <TextField
-                        id="outlined-max-price-input"
-                        label="Max Price"
-                        variant="outlined"
-                        margin="normal"
-                        value={maxPrice}
-                        onChange={maxPriceChangeHandler}
-                    />
-                    <Button variant="contained" type="submit" margin="normal">
-                        Upload Service
-                    </Button>
-                </FormControl>
-            </form>
+        <><Container sx={{ display:"flex", justifyContent:"center", my:10}} >
+            
+                    <form onSubmit={serviceSubmitHandler}>
+                        <FormControl>
+                            <h1>Make a New Service</h1>
+
+
+                            <TextField
+                                id="outlined-title-input"
+                                label="Title"
+                                variant="outlined"
+                                margin="normal"
+                                value={title}
+                                onChange={titleChangeHandler}
+                            />
+                           
+
+                            <DropDown
+                                title="Job Type"
+                                value={jobType}
+                                options={jobTypes}
+                                changeHandler={jobTypeChangeHandler}
+                            />
+                            <TextField
+                                id="outlined-min-price-input"
+                                label="Min Price"
+                                variant="outlined"
+                                margin="normal"
+                                value={minPrice}
+                                onChange={minPriceChangeHandler}
+                            />
+                            <TextField
+                                id="outlined-max-price-input"
+                                label="Max Price"
+                                variant="outlined"
+                                margin="normal"
+                                value={maxPrice}
+                                onChange={maxPriceChangeHandler}
+                            />
+
+                            <Button variant="contained" type="submit" margin="normal" sx={{ my: 2 }}>
+                                Upload Service
+                            </Button>
+
+                        </FormControl>
+                    </form>
+            
+            </Container>
         </>
     );
 };

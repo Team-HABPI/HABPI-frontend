@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+
+// Local imports
+import DropDown from "../components/UI/DropDown";
 import axios from "axios";
 
-import { FormControl, TextField, Button } from "@mui/material";
+import { FormControl, TextField, Button, Grid } from "@mui/material";
+
+// Add more breed options here
+const breedOptions = ["Cat", "Dog", "Goldfish"];
 
 const EditPage = (props) => {
     const [name, setName] = useState();
@@ -12,6 +18,13 @@ const EditPage = (props) => {
     const params = useParams();
     const navigate = useNavigate();
     const petId = params.petId;
+
+
+    // Age options
+    const ageOptions = [];
+    for (let i = 1; i < 25; i++) {
+        ageOptions.push(i);
+    }
 
     useEffect(() => {
         axios
@@ -48,45 +61,59 @@ const EditPage = (props) => {
 
     return (
         <>
-            <h1>Edit your pet</h1>
-            {!name && !age && !breed && <p>Loading...</p>}
-            <form onSubmit={editPetSubmitHandler}>
-                <FormControl>
-                    {name && (
-                        <TextField
-                            id="outlined-name-input"
-                            label="Name"
-                            variant="outlined"
-                            margin="normal"
-                            value={name}
-                            onChange={nameChangeHandler}
-                        />
-                    )}
-                    {age && (
-                        <TextField
-                            id="outlined-age-input"
-                            label="Age"
-                            variant="outlined"
-                            margin="normal"
-                            value={age}
-                            onChange={ageChangeHandler}
-                        />
-                    )}
-                    {breed && (
-                        <TextField
-                            id="outlined-breed-input"
-                            label="Breed"
-                            variant="outlined"
-                            margin="normal"
-                            value={breed}
-                            onChange={breedChangeHandler}
-                        />
-                    )}
-                    <Button type="submit" variant="contained" margin="normal">
-                        Update
-                    </Button>
-                </FormControl>
-            </form>
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+                style={{ minHeight: '70vh' }}
+            >
+
+                <Grid item xs={3}>
+                    <form onSubmit={editPetSubmitHandler}>
+
+                        <FormControl>
+                            <h1>Edit Your Pet</h1>
+                            {!name && !age && !breed && <p>Loading...</p>}
+                            <FormControl>
+                                {name && (
+                                    <TextField
+                                        id="outlined-name-input"
+                                        label="Name"
+                                        variant="outlined"
+                                        margin="normal"
+                                        value={name}
+                                        onChange={nameChangeHandler}
+                                    />
+                                )}
+                                {age && (
+                                    <DropDown
+                                        title="Age"
+                                        value={age}
+                                        options={ageOptions}
+                                        changeHandler={ageChangeHandler}
+                                    />
+                                )}
+                                {breed && (
+                                    <DropDown
+                                        title="Breed"
+                                        value={breed}
+                                        options={breedOptions}
+                                        changeHandler={breedChangeHandler}
+                                    />
+                                )}
+                                <Button type="submit" variant="contained" margin="normal" sx={{ my: 2 }}>
+                                    Update
+                                </Button>
+                            </FormControl>
+                        </FormControl>
+                    </form>
+
+
+                </Grid>
+
+            </Grid>
         </>
     );
 };
