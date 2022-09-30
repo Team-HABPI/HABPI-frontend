@@ -1,7 +1,7 @@
 // Library imports
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { TextField, Button, FormControl, Grid } from "@mui/material";
+import { TextField, Button, FormControl } from "@mui/material";
 
 // Local imports
 import DropDown from "../components/UI/DropDown";
