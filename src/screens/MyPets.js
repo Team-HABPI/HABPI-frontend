@@ -8,10 +8,20 @@ import axios from "axios";
 
 const MyPets = (props) => {
     const [loadedPets, setLoadedPets] = useState();
-
+    const [loadedUser, setLoadedUser] = useState();
     const params = useParams();
     const navigate = useNavigate();
     const userId = params.userId;
+    useEffect(() => {
+        axios
+            .get(`http://localhost:8082/user/${userId}`)
+            .then((response) => {
+                setLoadedUser(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }, [userId]);
 
     useEffect(() => {
         axios
@@ -39,8 +49,9 @@ const MyPets = (props) => {
 
     return (
         <Container>
-            <Typography variant="h2" style={{ display: "inline-block" }}>Your Pets</Typography>
-
+            {loadedUser &&(
+            <Typography variant="h2" style={{ display: "inline-block" }}> {loadedUser.name}'s Pets</Typography>
+            )}
             <Grid container item justifyContent="flex-end">
                 <Button variant="contained" onClick={onNewPetHandler} >New Pet</Button>
             </Grid>
