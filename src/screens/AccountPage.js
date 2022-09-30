@@ -1,75 +1,9 @@
 // Library imports
-import { useState, useEffect, Image } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Box, Container, flexbox } from '@mui/system';
+import { Box } from '@mui/system';
 import { Card, Grid } from "@mui/material";
-
-function Item1() {
-    return (
-
-        <Card sx={{
-            flexGrow: 1, color: 'blue', backgroundColor: 'yellow',
-
-            container: {
-
-                gap: 10,
-                rowGap: 10,
-                columnGap: 20,
-
-            },
-
-        }}> <h2> Item 1 </h2> </Card>
-
-
-    );
-}
-function Item2() {
-    const container1 = {
-        justifyContent: "flex-start",
-        gap: 10,
-        rowGap: 10,
-        columnGap: 70,
-        flexGrow: 1,
-        color: 'white',
-        backgroundColor: 'brown'
-    }
-
-    const container2 = {
-        justifyContent: "flex-start",
-        gap: 10,
-        rowGap: 50,
-        innerWidth: 50,
-        flexGrow: 1, color: 'white',
-        backgroundColor: 'green'
-    }
-
-    return (
-        <Container>
-            <Card sx={container1}> <h2> Pet Details</h2>
-                <p> <b>Name:</b> abcd </p>
-                <p> Animal type: dog </p>
-                <p> Age: 3 yeards </p>
-                <p> Gender: male </p>
-            </Card>
-
-            <Card sx={container2}> <h2> Pet Details</h2>
-                <p> <b>Name:</b> abcd </p>
-                <p> Animal type: dog </p>
-                <p> Age: 3 yeards </p>
-                <p> Gender: male </p>
-            </Card>
-
-        </Container>
-        // <Box sx={container}> <h2> Pet Details</h2>
-        //     <p> <b>Name:</b> abcd </p>
-        //     <p> Animal type: dog </p>
-        //     <p> Age: 3 yeards </p>
-        //     <p> Gender: male </p>
-        // </Box>
-
-    );
-}
 
 
 const AccountPage = () => {
@@ -90,69 +24,42 @@ const AccountPage = () => {
     }, [userId]);
 
 
-    const container1 = {
-        justifyContent: "flex-start",
-        gap: 10,
-        rowGap: 10,
-        columnGap: 70,
-        flexGrow: 1,
-        color: 'black',
-        backgroundColor: 'silver'
-    }
 
-    const container2 = {
-        justifyContent: "flex-start",
-        gap: 10,
-        rowGap: 50,
-        flexGrow: 0.8,
-        color: 'black',
-        backgroundColor: 'silver'
-    }
 
     return (
 
         <>
-
-
-            <h1> Account Page </h1>
+            <h1 style={{ padding: 10 }}> Account Page </h1>
 
             {loadedUser && (
 
+                
+                    <h1 style={{ fontSize: 56 ,padding:10}}> {loadedUser.name}  </h1>
 
-                <Card container spacing={0} sx={{ p: 3, m: 10, alignItems: 'center', width: '50%', boxShadow: "none" }}>
-
-                    <h1 style={{ fontSize: 56 }}> {loadedUser.name}  </h1>
-
-                </Card>
+                
             )
             }
-            <Grid container spacing={0} >
+            <Grid
+                container
+                spacing={1}
+            >
+                <Grid item >
+                    {!loadedUser && <p>Loading or error</p>}
+                    {loadedUser && (
 
-                {!loadedUser && <p>Loading or error</p>}
-                {loadedUser && (
-                    <Card container spacing={2} sx={{ p: 3, m: 3 }}>
-                        <h1> Person Details </h1>
-                        <p>Age: {loadedUser.age}</p>
-                        <p>Gender: {loadedUser.gender}</p>
-                        <p>Email: {loadedUser.email}</p>
+                        <Card sx={{ p: 3, m: 3 }}>
+                            <h1>Details </h1>
+                            <p>Age: {loadedUser.age}</p>
+                            <p>Gender: {loadedUser.gender}</p>
+                            <p>Email: {loadedUser.email}</p>
 
-                        {/* <h1>Pets</h1>
-                    {loadedUser.pets.map((pet) => {
-                        return (
-                            <>
-                                <h2 key={pet.id}>{pet.name}</h2>
-                                <p key={pet.id}>{pet.age}</p>
-                                <p key={pet.id}>{pet.breed}</p>
-                            </>
-                        );
-                    })}
+                        </Card>
 
-                    <p>Services: {loadedUser.services}</p> */}
-                    </Card>
-                )}
+                    )}
+                </Grid>
+                <Grid item >
+                    {loadedUser && (
 
-                {loadedUser && (
-                    <div>
                         <Card sx={{ p: 3, m: 2 }}>
 
                             <h1>Animals</h1>
@@ -171,15 +78,10 @@ const AccountPage = () => {
                             </Box>
 
                         </Card>
-                    </div>
 
-
-
-                )
-                }
-
-                {/* <Item1 />
-            <Item2 /> */}
+                    )
+                    }
+                </Grid>
             </Grid >
 
 
