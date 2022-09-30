@@ -22,8 +22,8 @@ const MainPage = (props) => {
     }, []);
     return (
         <div>
-            <img src={LogoH} alt="HABPI-Pets"></img>
-            <h1 style={{ textAlign: "center" }}>Welcome to HAPBI-Pets</h1>
+            <img src={LogoH} style={{ alignItems: 'center', justifyContent: 'center' }} alt="HABPI-Pets"></img>
+            {/* <h1 style={{ textAlign: "center" }}>Welcome to HAPBI-Pets</h1> */}
             <h2 style={{ textAlign: "left", padding: 40 }}>Current Services Available</h2>
             <Box sx={{ display: "flex", justifyContent: "start", flexDirection: 'row', flexWrap: 'wrap' }}>
                 {loadedServices &&

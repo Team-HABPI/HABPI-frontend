@@ -42,10 +42,10 @@ const NavBar = () => {
             { title: "Services", link: "/" },
             { title: "My Pets", link: `/${auth.userId}/pets` },
             { title: "Create Service", link: `/${auth.userId}/newService` },
-            { title: "New Pet", link: `/newPet` },
+            { title: "Account", link: `/${auth.userId}` },
         ];
         settings = [
-            { title: "Account", link: `/${auth.userId}` },
+
             { title: "My Services", link: `/${auth.userId}/services` },
             { title: "Logout" },
         ];
