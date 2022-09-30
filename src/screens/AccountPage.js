@@ -111,30 +111,32 @@ const AccountPage = () => {
 
     return (
 
-        <Grid container spacing={2}>
-            <h1> Account Page</h1>
+        <>
+
+
+            <h1> Account Page </h1>
 
             {loadedUser && (
 
 
-                <Card sx={{ p: 3, m: 10, alignItems: 'center' }}>
+                <Card container spacing={0} sx={{ p: 3, m: 10, alignItems: 'center', width: '50%', boxShadow: "none" }}>
 
-                    <h1> {loadedUser.name}  </h1>
+                    <h1 style={{ fontSize: 56 }}> {loadedUser.name}  </h1>
 
                 </Card>
-            )}
+            )
+            }
+            <Grid container spacing={0} >
 
+                {!loadedUser && <p>Loading or error</p>}
+                {loadedUser && (
+                    <Card container spacing={2} sx={{ p: 3, m: 3 }}>
+                        <h1> Person Details </h1>
+                        <p>Age: {loadedUser.age}</p>
+                        <p>Gender: {loadedUser.gender}</p>
+                        <p>Email: {loadedUser.email}</p>
 
-            {!loadedUser && <p>Loading or error</p>}
-            {loadedUser && (
-                <Card sx={{ p: 3, m: 10 }}>
-                    <h2><u> Person Details </u></h2>
-
-                    <p>Age: {loadedUser.age}</p>
-                    <p>Gender: {loadedUser.gender}</p>
-                    <p>Email: {loadedUser.email}</p>
-
-                    {/* <h1>Pets</h1>
+                        {/* <h1>Pets</h1>
                     {loadedUser.pets.map((pet) => {
                         return (
                             <>
@@ -146,35 +148,42 @@ const AccountPage = () => {
                     })}
 
                     <p>Services: {loadedUser.services}</p> */}
-                </Card>
-            )}
+                    </Card>
+                )}
 
-            {loadedUser && (
-                <Card sx={{ p: 3, m: 10, backgroundColor: "silver", color: 'black' }}>
-                    <h2><u>Animals</u></h2>
-                    {loadedUser.pets.map((pet) => {
-                        return (
-                            <Card sx={{ p: 3, m: 8 }}>
-                                <h2 key={pet.id}>{pet.name}</h2>
-                                <p key={pet.id}>Age: {pet.age}</p>
-                                <p key={pet.id}>Breed: {pet.breed}</p>
-                                <p>Services: {loadedUser.services}</p>
-                            </Card>
-                        );
-                    })}
+                {loadedUser && (
+                    <div>
+                        <Card sx={{ p: 3, m: 2 }}>
 
-                </Card>
+                            <h1>Animals</h1>
+                            <
+                                Box sx={{ display: 'flex', flexDirection: "row" }}>
+                                {loadedUser.pets.map((pet) => {
+                                    return (
+                                        <Card sx={{ pr: 2, mr: 2, minWidth: 120, boxShadow: "none" }}>
+                                            <h2 key={pet.id}>{pet.name}</h2>
+                                            <p key={pet.id}>Age: {pet.age}</p>
+                                            <p key={pet.id}>Breed: {pet.breed}</p>
+                                            <p>Services: {loadedUser.services}</p>
+                                        </Card>
+                                    );
+                                })}
+                            </Box>
+
+                        </Card>
+                    </div>
 
 
-            )
-            }
 
-            {/* <Item1 />
+                )
+                }
+
+                {/* <Item1 />
             <Item2 /> */}
-        </Grid >
+            </Grid >
 
 
-
+        </>
     );
 };
 
