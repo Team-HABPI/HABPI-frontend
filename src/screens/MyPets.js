@@ -53,7 +53,7 @@ const MyPets = (props) => {
                                             type="submit"
                                             margin="normal"
                                             onClick={() => petEditButtonHandler(pet._id)}
-                                            sx={{ mr: 1 }}
+                                            sx={{ mr:1 }}
                                         >
                                             Edit
                                         </Button>
