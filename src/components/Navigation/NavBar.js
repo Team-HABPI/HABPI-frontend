@@ -18,7 +18,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 // Local imports
 import { AuthContext } from "../../shared/context/auth-context";
 
-const title = "Hello";
+const title = "HABPI-Pets";
 
 /**
  * This is a MUI AppBar
