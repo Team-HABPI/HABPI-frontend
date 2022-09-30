@@ -27,7 +27,11 @@ const MyPets = (props) => {
     };
 
     const petRemoveButtonHandler = (petId) => {
-       
+        // axios.delete()
+    };
+    
+    const petAddButtonHandler = ()=>{
+        navigate(`/newPet`)
     };
 
     return (
@@ -37,6 +41,12 @@ const MyPets = (props) => {
             <Container>
 
                 <h1>Your Pets</h1>
+                <Button
+                    variant="contained"
+                    type="submit"
+                    onClick={()=>petAddButtonHandler()}>
+                    Add Pet
+                </Button>
 
                 {loadedPets &&
                     loadedPets.map((pet) => {
@@ -53,7 +63,7 @@ const MyPets = (props) => {
                                             type="submit"
                                             margin="normal"
                                             onClick={() => petEditButtonHandler(pet._id)}
-                                            sx={{ mr:1 }}
+                                            sx={{ mr: 1 }}
                                         >
                                             Edit
                                         </Button>
