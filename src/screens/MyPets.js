@@ -1,7 +1,8 @@
 // Library imports
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Container, Card, CardContent, Grid ,Button, Typography  } from "@mui/material";
+import { Container, Card, CardContent, Grid, Button, Typography } from "@mui/material";
+
 import axios from "axios";
 
 
@@ -17,7 +18,7 @@ const MyPets = (props) => {
             .get(`http://localhost:8082/user/${userId}/all-pets`)
             .then((response) => {
                 setLoadedPets(response.data.pets);
-            });
+            }).catch((error) => console.log(error));
     }, [userId]);
 
     const petEditButtonHandler = (petId) => {
@@ -25,6 +26,10 @@ const MyPets = (props) => {
     };
 
     const petRemoveButtonHandler = (petId) => {
+        axios
+            .put(`http://localhost:8082/user/${userId}/remove-pet`, { petId }).then((response) => {
+                setLoadedPets(response.data.pets);
+            }).catch((error) => console.log(error))
 
     };
 
@@ -49,7 +54,7 @@ const MyPets = (props) => {
                                     <Typography variant="h3">{pet.name}</Typography>
                                     <Typography >Age: {pet.age}</Typography>
                                     <Typography >Breed: {pet.breed}</Typography>
-                                    
+
                                     <Button
                                         key={pet._id}
                                         variant="contained"
