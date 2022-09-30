@@ -1,8 +1,8 @@
 // Library imports
-import { useState, useEffect, Image } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Box, Container } from '@mui/system';
+import { Box } from '@mui/system';
 import { Card, Grid } from "@mui/material";
 
 

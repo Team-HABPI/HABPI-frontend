@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import { TextField, Button, FormControl } from "@mui/material";
+import { TextField, Button, FormControl, Box } from "@mui/material";
 
 // Local Imports
 import { AuthContext } from "../shared/context/auth-context";
@@ -99,71 +99,75 @@ const Auth = (props) => {
 
     return (
         <>
-            <form onSubmit={authSubmitHandler}>
-                <FormControl>
-                    <h2>Login Required</h2>
-                    <TextField
-                        id="outlined-email-input"
-                        label="Email"
-                        variant="outlined"
-                        margin="normal"
-                        value={email}
-                        onChange={emailChangeHandler}
-                    />
-                    <TextField
-                        id="outlined-password-input"
-                        type="password"
-                        label="Password"
-                        variant="outlined"
-                        margin="normal"
-                        value={password}
-                        onChange={passwordChangeHandler}
-                    />
-                    {!isLogin && (
-                        <>
+            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
+                    <form onSubmit={authSubmitHandler}>
+                        <FormControl>
+                            <h2>Login Required</h2>
                             <TextField
-                                id="outlined-name-input"
-                                label="Name"
+                                id="outlined-email-input"
+                                label="Email"
                                 variant="outlined"
                                 margin="normal"
-                                value={name}
-                                onChange={nameChangeHandler}
-                            />
-                            <DropDown
-                                title="Age"
-                                value={age}
-                                options={ageOptions}
-                                changeHandler={ageChangeHandler}
-                            />
-                            <DropDown
-                                title="Gender"
-                                value={gender}
-                                options={genderOptions}
-                                changeHandler={genderChangeHandler}
+                                value={email}
+                                onChange={emailChangeHandler}
                             />
                             <TextField
-                                id="outlined-phone-input"
-                                label="Phone"
+                                id="outlined-password-input"
+                                type="password"
+                                label="Password"
                                 variant="outlined"
                                 margin="normal"
-                                value={phone}
-                                onChange={phoneChangeHandler}
+                                value={password}
+                                onChange={passwordChangeHandler}
                             />
-                        </>
-                    )}
-                    <Button type="submit" variant="contained" margin="normal">
-                        {isLogin ? "LOGIN" : "SIGNUP"}
+                            {!isLogin && (
+                                <>
+                                    <TextField
+                                        id="outlined-name-input"
+                                        label="Name"
+                                        variant="outlined"
+                                        margin="normal"
+                                        value={name}
+                                        onChange={nameChangeHandler}
+                                    />
+                                    <DropDown
+                                        title="Age"
+                                        value={age}
+                                        options={ageOptions}
+                                        changeHandler={ageChangeHandler}
+                                    />
+                                    <DropDown
+                                        title="Gender"
+                                        value={gender}
+                                        options={genderOptions}
+                                        changeHandler={genderChangeHandler}
+                                    />
+                                    <TextField
+                                        id="outlined-phone-input"
+                                        label="Phone"
+                                        variant="outlined"
+                                        margin="normal"
+                                        value={phone}
+                                        onChange={phoneChangeHandler}
+                                    />
+                                </>
+                            )}
+                            <Button type="submit" variant="contained" margin="normal">
+                                {isLogin ? "LOGIN" : "SIGNUP"}
+                            </Button>
+                        </FormControl>
+                    </form>
+                    <Button
+                        variant="contained"
+                        type="submit"
+                        margin="normal"
+                        onClick={toggleSignupHandler}
+                        sx={{ my: 2 }}
+                    >
+                        SWITCH TO {isLogin ? "SIGNUP" : "LOGIN"}
                     </Button>
-                </FormControl>
-            </form>
-            <Button
-                variant="contained"
-                type="submit"
-                margin="normal"
-                onClick={toggleSignupHandler}
-            >
-                SWITCH TO {isLogin ? "SIGNUP" : "LOGIN"}
-            </Button>
+            </Box>
+
         </>
     );
 };
