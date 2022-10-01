@@ -63,7 +63,7 @@ const AccountPage = () => {
                                         <Card sx={{ pr: 2, mr: 4, minWidth: 120, boxShadow: "none" }}>
 
                                             <Typography variant="h4">{pet.name}</Typography>
-                                            <Typography >Age: {pet.age}</Typography>
+                                            <Typography margin="normal" >Age: {pet.age}</Typography>
                                             <Typography >Breed: {pet.breed}</Typography>
                                             <Typography >Services: {loadedUser.services}</Typography>
 
