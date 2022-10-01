@@ -1,14 +1,17 @@
 // Library includes
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Card } from "@mui/material";
 import { Box } from "@mui/system";
 import LogoH from "../logo/HABPI-PETS.png";
 
+import { AuthContext } from "../shared/context/auth-context";
+
 const MainPage = (props) => {
     const [loadedServices, setLoadedServices] = useState();
 
+    const auth = useContext(AuthContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -21,8 +24,11 @@ const MainPage = (props) => {
     }, []);
 
     const onSericeClickHandler = (serviceId) => {
-        console.log(serviceId);
-        navigate(`/service/${serviceId}`);
+        if(auth.isLoggedIn) {
+            navigate(`/service/${serviceId}`);
+        } else {
+            navigate("/auth");
+        }
     };
 
     return (
@@ -48,22 +54,17 @@ const MainPage = (props) => {
                     loadedServices.map((service) => {
                         return (
                             <Card
+                                key={service._id}
                                 sx={{ minWidth: 350, p: 4, m: 4 }}
                                 onClick={() => {
                                     onSericeClickHandler(service.id);
                                 }}
                             >
                                 <>
-                                    <h3 key={service.id}>{service.title}</h3>
-                                    <h4 key={service.id}>{service.jobType}</h4>
-                                    <p key={service.id}>
-                                        {" "}
-                                        Minimum Price = ${service.minPrice}
-                                    </p>
-                                    <p key={service.id}>
-                                        {" "}
-                                        Maximum Price = ${service.maxPrice}
-                                    </p>
+                                    <h3>{service.title}</h3>
+                                    <h4>{service.jobType}</h4>
+                                    <p> Minimum Price = ${service.minPrice}</p>
+                                    <p> Maximum Price = ${service.maxPrice}</p>
                                 </>
                             </Card>
                         );
