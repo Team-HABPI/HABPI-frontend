@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Box } from '@mui/system';
-import { Card, Grid, Typography } from "@mui/material";
+import { Card, Grid, Typography, Button, Container } from "@mui/material";
 
 
 const AccountPage = () => {
@@ -27,41 +27,40 @@ const AccountPage = () => {
     return (
 
         <>
-           
-            <Typography variant="h2" sx={{ fontStyle: 'bold', py: 10 ,pl:3}}>Account Page</Typography>
+            <Container padding="normal">
+                {loadedUser && (
+                    <Typography variant="h2" sx={{ pl: 3, p: 4 }}>{loadedUser.name}</Typography>
 
-            {loadedUser && (
-                <Typography variant="h2" sx={{pl:3}}>{loadedUser.name}</Typography>
+                )
+                }
 
-            )
-            }
+                <Grid
+                    container item justifyContent="flex" style={{ alignContent: 'end' }}
+                >
 
-            <Grid
-             container item justifyContent="flex"
-            >
-                
                     {!loadedUser && <p>Loading or error</p>}
                     {loadedUser && (
 
-                        <Card sx={{ p: 3, m: 3 }}>
-                            <Typography variant="h3">Details</Typography>
-                            <Typography>Age: {loadedUser.age}</Typography>
-                            <Typography>Gender: {loadedUser.gender}</Typography>
-                            <Typography>Email: {loadedUser.email}</Typography>
+                        <Card sx={{ p: 6, m: 3 }}>
+                            <Typography variant="h3" sx={{ p: 1 }}>Details</Typography>
+                            <Typography sx={{ p: 0.6, m: 0.7 }}>Age: {loadedUser.age}</Typography>
+                            <Typography sx={{ p: 0.6, m: 0.7 }}>Gender: {loadedUser.gender}</Typography>
+                            <Typography sx={{ p: 0.6, m: 0.7 }}>Email: {loadedUser.email}</Typography>
 
 
                         </Card>
 
                     )}
+
                     {loadedUser && (
 
-                        <Card sx={{ p: 3, m: 2 }}>
-                            <Typography variant="h3">Animals</Typography>
+                        <Card sx={{ p: 5, m: 3, flexDirection: 'column' }}>
+                            <Typography variant="h3" sx={{ p: 2 }}>Pets</Typography>
 
-                            <Box sx={{ display: 'flex', flexDirection: "row" }}>
+                            <Box sx={{ display: 'flex', flexDirection: "row", p: 3 }}>
                                 {loadedUser.pets.map((pet) => {
                                     return (
-                                        <Card sx={{ pr: 2, mr: 3, minWidth: 120, boxShadow: "none" }}>
+                                        <Card sx={{ pr: 2, mr: 4, minWidth: 120, boxShadow: "none" }}>
 
                                             <Typography variant="h4">{pet.name}</Typography>
                                             <Typography margin="normal" >Age: {pet.age}</Typography>
@@ -78,8 +77,10 @@ const AccountPage = () => {
 
                     )
                     }
-            </Grid >
 
+                </Grid >
+                <Button variant="contained" sx={{ p: 2, m: 3 }}> Edit </Button>
+            </Container>
 
         </>
     );
