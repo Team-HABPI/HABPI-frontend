@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Box } from '@mui/system';
-import { Card, Grid, Typography } from "@mui/material";
+import { Card, Grid, Typography, Button, Container } from "@mui/material";
 
 
 const AccountPage = () => {
@@ -27,9 +27,7 @@ const AccountPage = () => {
     return (
 
         <>
-           
-            <Typography variant="h2" sx={{ fontStyle: 'bold', py: 10 ,pl:3}}>Account Page</Typography>
-
+            <Container padding="normal">
             {loadedUser && (
                 <Typography variant="h2" sx={{pl:3}}>{loadedUser.name}</Typography>
 
@@ -53,10 +51,11 @@ const AccountPage = () => {
                         </Card>
 
                     )}
+                <Button variant="contained"> Edit </Button>
                     {loadedUser && (
 
                         <Card sx={{ p: 3, m: 2 }}>
-                            <Typography variant="h3">Animals</Typography>
+                            <Typography variant="h3">Pets</Typography>
 
                             <Box sx={{ display: 'flex', flexDirection: "row" }}>
                                 {loadedUser.pets.map((pet) => {
@@ -79,7 +78,7 @@ const AccountPage = () => {
                     )
                     }
             </Grid >
-
+        </Container>
 
         </>
     );
