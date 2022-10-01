@@ -47,7 +47,7 @@ function App() {
                 <Route path="/:userId" element={<AccountPage />} />
                 <Route path="/:userId/services" element={<MyServices />} />
                 <Route path="/:serviceId" element={<DescriptionPage />} />
-                <Route pather="/:userId/edit" element={<EditUser />} />
+                <Route pather="/:userId/editUser" element={<EditUser/>} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         );

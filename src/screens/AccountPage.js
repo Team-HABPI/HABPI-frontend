@@ -25,7 +25,7 @@ const AccountPage = () => {
 
 
     const editDetailsButtonHandler = (event) => {
-        navigate(`/${userId}/edit`);
+        navigate(`/${userId}/editUser`);
     };
 
     return (
