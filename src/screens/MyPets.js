@@ -54,7 +54,6 @@ const MyPets = (props) => {
                                     <Typography variant="h3">{pet.name}</Typography>
                                     <Typography >Age: {pet.age}</Typography>
                                     <Typography >Breed: {pet.breed}</Typography>
-
                                     <Button
                                         key={pet._id}
                                         variant="contained"
