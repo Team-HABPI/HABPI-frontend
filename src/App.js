@@ -7,13 +7,13 @@ import NavBar from "./components/Navigation/NavBar";
 // Screen import
 import MainPage from "./screens/MainPage";
 import AccountPage from "./screens/AccountPage";
-import DescriptionPage from "./screens/DescriptionPage";
 import NotFoundPage from "./screens/NotFoundPage";
 import MyPets from "./screens/MyPets";
 import NewPet from "./screens/NewPet";
 import CreateService from "./screens/CreateService";
 import MyServices from "./screens/MyServices";
 import EditPet from "./screens/EditPet";
+import ServiceDetails from "./screens/ServiceDetails";
 
 // Auth
 import Auth from "./screens/Auth";
@@ -43,9 +43,12 @@ function App() {
                 <Route path="/newPet" element={<NewPet />} />
                 <Route path="/:petId/edit" element={<EditPet />} />
                 <Route path="/:userId/newService" element={<CreateService />} />
+                <Route
+                    path="/service/:serviceId"
+                    element={<ServiceDetails />}
+                />
                 <Route path="/:userId" element={<AccountPage />} />
                 <Route path="/:userId/services" element={<MyServices />} />
-                <Route path="/:serviceId" element={<DescriptionPage />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         );
@@ -53,7 +56,10 @@ function App() {
         routes = (
             <Routes>
                 <Route path="/" element={<MainPage />} />
-                <Route path="/description" element={<DescriptionPage />} />
+                <Route
+                    path="/service/:serviceId"
+                    element={<ServiceDetails />}
+                />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
